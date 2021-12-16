@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import Home from "./components/home/Home";
+import LogIn from "./components/logIn/LogIn";
+import Profile from "./components/profile/Profile";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/index" element={<Home />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p>404 ! There's nothing here!</p>
+            </main>
+          }
+        />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+    // class AllRoutes extends Component{
+    //   render(){
+    //     return(
+    //       <Switch> 
+    //         <Route exact path="/login" component={Login} />
+    //         <Route exact path="/signup" component={SignUp} />
+    //         { this.state.authenticated && 
+    //           <Route exact path="/Welcome" component={Welcome} />
+    //         }
+    //       </Switch>
+    //     );
+    //   }
+    // }
+    
   );
 }
 
