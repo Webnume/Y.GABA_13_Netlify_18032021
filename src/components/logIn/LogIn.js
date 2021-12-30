@@ -21,12 +21,11 @@ const required = (value) => {
 const Login = (props) => {
   const form = useRef();
   const checkBtn = useRef();
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberUser, setRememberUser] = useState(false);
-  const [loading, setLoading] = useState(false);
 
+  const [loading, setLoading] = useState(false);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
 
@@ -46,14 +45,14 @@ const Login = (props) => {
     e.preventDefault();
 
     setLoading(true);
-
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(username, password))
         .then(() => {
-          props.history.push("/profile");
-          window.location.reload();
+          return <Navigate to="/profile" />;
+          // props.history.push("/profile");
+          // window.location.reload();
         })
         .catch(() => {
           setLoading(false);
@@ -62,10 +61,10 @@ const Login = (props) => {
       setLoading(false);
     }
   };
-
   if (isLoggedIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/profile" />;    
   }
+
 
   return (
     <main className="main bg-dark">
