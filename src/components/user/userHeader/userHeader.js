@@ -1,7 +1,20 @@
-import React, { useState } from "react";
 import styles from "./userHeader.module.css";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import userDataService from "../../../services/userData.service";
 
-const UserHeader = ({ userData }) => {
+const UserHeader = () => {
+  const dispatch = useDispatch();
+  const { userData } = useSelector((state) => state.userData);
+  // console.log(userData); 
+   const [data, setData] = useState(0);
+
+
+  useEffect(() => {
+    console.log("useEffrct")
+    dispatch(userDataService());
+  }, [dispatch, data, setData]);
+
   const [editOpen, setEditOpen] = useState(false);
   const [firstName, setFirstName] = useState(userData.firstName);
   const [lastName, setLastName] = useState(userData.lastName);
