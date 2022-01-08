@@ -1,30 +1,27 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, {useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../../assets/css/main.css";
-// import userDataService from "../../services/userData.service";
 import UserHeader from "../user/userHeader/userHeader";
 import { Navigate } from "react-router-dom";
+import { getProfil } from "../../store/actions/userActions";
+
 
 const Profile = () => {
-  // const dispatch = useDispatch();
-  // const { userData } = useSelector((state) => state.userData);
-  const { isLoggedIn } = useSelector((state) => state.auth);
-  // // console.log(isLoggedIn);
-  // // console.log(userData); 
-  //  const [data, setData] = useState(0);
+  const dispatch = useDispatch();
+  const  auth  = useSelector((state) => state.auth);
+  const  user  = useSelector((state) => state.user);
 
 
-  // useEffect(() => {
-  //   console.log("useEffrct")
-  //   dispatch(userDataService());
-  // }, [dispatch, data, setData]);
+  useEffect(() => {
+    dispatch(getProfil());
+  }, [dispatch]);
 
-  if (!isLoggedIn) {
+  if (!auth.id) {
     return <Navigate to="/index" />;
   }
   return (
     <main className="main bg-dark">
-      <UserHeader />
+      <UserHeader userData={user}/>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
         <div className="account-content-wrapper">

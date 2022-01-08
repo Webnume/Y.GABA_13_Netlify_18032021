@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from "../actions/types";
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from "../actions_old/types";
 
 const user = JSON.parse(localStorage.getItem("user"));
 

@@ -4,8 +4,16 @@ import Home from "./components/home/Home";
 import LogIn from "./components/logIn/LogIn";
 import Profile from "./components/profile/Profile";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { loadUser } from "./store/actions/authActions";
+import { useDispatch } from "react-redux";
 
-function App() {
+function App() {  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Header />

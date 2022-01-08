@@ -2,7 +2,7 @@ import {
   fetchUserPending,
   fetchUserSuccess,
   fetchUserError,
-} from "../actions/userData";
+} from "../actions_old/userData";
 
 // console.log((user.body.token));
 

@@ -1,45 +1,51 @@
 import styles from "./userHeader.module.css";
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import userDataService from "../../../services/userData.service";
+import React, {useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfil, updateUSer } from "../../../store/actions/userActions";
 
-const UserHeader = () => {
+const UserHeader = ({userData}) => {
   const dispatch = useDispatch();
-  const { userData } = useSelector((state) => state.userData);
-  // console.log(userData); 
-   const [data, setData] = useState(0);
+  console.log(userData); 
+const user = useSelector (state => state.user)
 
+useEffect(() => {
+  setFirstName(user.firstName);
+  setLastName(user.lastName);
+}, [user]);
 
-  useEffect(() => {
-    console.log("useEffrct")
-    dispatch(userDataService());
-  }, [dispatch, data, setData]);
-
+// console.log(user);
   const [editOpen, setEditOpen] = useState(false);
-  const [firstName, setFirstName] = useState(userData.firstName);
-  const [lastName, setLastName] = useState(userData.lastName);
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
   const [previousForCancelfirst, setpreviousForCancelfirst] = useState("");
   const [previousForCancellast, setpreviousForCancellast] = useState("");
   
-  console.log("userHeader: ", userData.lastName);
+  console.log("userHeader: ", user.lastName);
   
   const edit = () => {
     setEditOpen(true);
     setpreviousForCancelfirst(firstName);
     setpreviousForCancellast(lastName);
   };
+
   const save = () => {
     setEditOpen(false);
     setFirstName(firstName);
     setLastName(lastName);
+    dispatch(updateUSer({
+      "firstName": firstName,
+      "lastName": lastName
+    }))
     console.log("firstNameSaved : ", firstName);
     console.log("lastNameSaved : ", lastName);
   };
+
   const cancel = () => {
     setEditOpen(false);
     setFirstName(previousForCancelfirst);
     setLastName(previousForCancellast);
   };
+
   return !editOpen ? (
     <div className="header">
       <h1>

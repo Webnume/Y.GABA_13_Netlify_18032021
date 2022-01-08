@@ -1,14 +1,14 @@
 import React from "react";
 import Logo from "../../assets/img/argentBankLogo.png";
 import { Link } from "react-router-dom";
-import { logout } from "../../actions/auth";
+import { signOut } from "../../store/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { id } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const logOut = () => {
-    dispatch(logout());
+    dispatch(signOut());
   };
   return (
     <nav className="main-nav">
@@ -21,7 +21,7 @@ const Header = () => {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        {isLoggedIn ? (
+        {id ? (
           <button className="sign-in-button" onClick={logOut}>Logout</button>
         ) : (
           <Link className="main-nav-item" to="./login">

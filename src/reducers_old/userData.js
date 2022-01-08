@@ -2,7 +2,7 @@ import {
   FETCH_USER_PENDING,
   FETCH_USER_SUCCESS,
   FETCH_USER_ERROR,
-} from "../actions/types";
+} from "../actions_old/types";
 
 // const user = JSON.parse(localStorage.getItem("user"));
 // const initialState = user
