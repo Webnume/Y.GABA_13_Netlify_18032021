@@ -8,20 +8,18 @@ import { getProfil } from "../../store/actions/userActions";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const  auth  = useSelector((state) => state.auth);
-  const  user  = useSelector((state) => state.user);
-
+  const  {id}  = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getProfil());
   }, [dispatch]);
 
-  if (!auth.id) {
+  if (!id) {
     return <Navigate to="/index" />;
   }
   return (
     <main className="main bg-dark">
-      <UserHeader userData={user}/>
+      <UserHeader />
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
         <div className="account-content-wrapper">

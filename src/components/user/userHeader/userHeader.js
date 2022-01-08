@@ -1,27 +1,29 @@
 import styles from "./userHeader.module.css";
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfil, updateUSer } from "../../../store/actions/userActions";
+import { updateUSer } from "../../../store/actions/userActions";
 
-const UserHeader = ({userData}) => {
+import { getProfil } from "../../../store/actions/userActions";
+
+const UserHeader = () => {
   const dispatch = useDispatch();
-  console.log(userData); 
-const user = useSelector (state => state.user)
-
-useEffect(() => {
-  setFirstName(user.firstName);
-  setLastName(user.lastName);
-}, [user]);
-
-// console.log(user);
+  // console.log(userData);
+  const user = useSelector((state) => state.user);
   const [editOpen, setEditOpen] = useState(false);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [previousForCancelfirst, setpreviousForCancelfirst] = useState("");
   const [previousForCancellast, setpreviousForCancellast] = useState("");
-  
-  console.log("userHeader: ", user.lastName);
-  
+
+  useEffect(() => {
+    setFirstName(user.firstName);
+    setLastName(user.lastName);
+  }, [user]);
+
+  // console.log(user);
+
+  // console.log("userHeader: ", user.lastName);
+
   const edit = () => {
     setEditOpen(true);
     setpreviousForCancelfirst(firstName);
@@ -32,10 +34,13 @@ useEffect(() => {
     setEditOpen(false);
     setFirstName(firstName);
     setLastName(lastName);
-    dispatch(updateUSer({
-      "firstName": firstName,
-      "lastName": lastName
-    }))
+    dispatch(
+      updateUSer({
+        firstName: firstName,
+        lastName: lastName
+      })
+    );
+      dispatch(getProfil());
     console.log("firstNameSaved : ", firstName);
     console.log("lastNameSaved : ", lastName);
   };

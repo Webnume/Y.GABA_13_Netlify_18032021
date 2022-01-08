@@ -8,7 +8,7 @@ export const signIn = (email, password) => {
       .post(`${url}/user/login`, { email, password })
       .then((resp) => {
         localStorage.setItem("token", resp.data.body.token);
-        console.log("token", resp.data.body.token);
+        // console.log("token", resp.data.body.token);
 
         dispatch({
           type: "SIGN_IN",

@@ -29,7 +29,7 @@ const Login = () => {
     dispatch(signIn(creds.email, creds.password));
     setCreds({ email: "", password: "" });
   };
-console.log(auth.id);
+// console.log(auth.id);
   if (auth.id) return <Navigate to="/profile" />;
 
 

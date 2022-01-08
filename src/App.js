@@ -8,6 +8,9 @@ import React, { useEffect } from 'react';
 import { loadUser } from "./store/actions/authActions";
 import { useDispatch } from "react-redux";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {  
   const dispatch = useDispatch();
   useEffect(() => {
@@ -16,6 +19,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

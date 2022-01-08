@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../assets/img/argentBankLogo.png";
 import { Link } from "react-router-dom";
 import { signOut } from "../../store/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
+import { getProfil } from "../../store/actions/userActions";
 
 const Header = () => {
-  const { id } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { id } = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  const [firstName, setFirstName] = useState(user.firstName);
+
   const logOut = () => {
     dispatch(signOut());
   };
+  
+  useEffect(() => {
+    dispatch(getProfil());
+  }, [dispatch]);
+
+
+  useEffect(() => {
+    setFirstName(user.firstName);
+  }, [user]);
+
+
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="./index">
@@ -22,7 +37,18 @@ const Header = () => {
       </Link>
       <div>
         {id ? (
-          <button className="sign-in-button" onClick={logOut}>Logout</button>
+          <>
+            <div>
+              <Link className="main-nav-item" to="./profile">
+                <i className="fa fa-user-circle"></i>
+                {firstName}
+              </Link>
+              <Link className="main-nav-item" to="/" onClick={logOut}>
+                <i className="fa fa-sign-out"></i>
+                Sign Out
+              </Link>
+            </div>
+          </>
         ) : (
           <Link className="main-nav-item" to="./login">
             <i className="fa fa-user-circle"></i>

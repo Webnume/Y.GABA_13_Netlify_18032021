@@ -7,7 +7,7 @@ export const getProfil = () => {
     axios
       .post(`${url}/user/profile`, {}, setHeaders())
       .then((user) => {
-        console.log(user);
+        // console.log(user);
         dispatch({
           type: "GET_USER",
           user
