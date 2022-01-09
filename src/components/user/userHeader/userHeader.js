@@ -37,12 +37,10 @@ const UserHeader = () => {
     dispatch(
       updateUSer({
         firstName: firstName,
-        lastName: lastName
+        lastName: lastName,
       })
     );
-      dispatch(getProfil());
-    console.log("firstNameSaved : ", firstName);
-    console.log("lastNameSaved : ", lastName);
+    dispatch(getProfil());
   };
 
   const cancel = () => {

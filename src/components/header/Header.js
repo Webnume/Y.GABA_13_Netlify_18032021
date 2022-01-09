@@ -3,7 +3,6 @@ import Logo from "../../assets/img/argentBankLogo.png";
 import { Link } from "react-router-dom";
 import { signOut } from "../../store/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfil } from "../../store/actions/userActions";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -15,11 +14,6 @@ const Header = () => {
     dispatch(signOut());
   };
   
-  useEffect(() => {
-    dispatch(getProfil());
-  }, [dispatch]);
-
-
   useEffect(() => {
     setFirstName(user.firstName);
   }, [user]);

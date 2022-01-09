@@ -2,18 +2,19 @@ import axios from "axios";
 import { url } from "../../api";
 import { toast } from "react-toastify";
 
-export const signIn = (email, password) => {
+export const signIn = (email, password, rememberMe) => {
   return (dispatch) => {
     axios
       .post(`${url}/user/login`, { email, password })
       .then((resp) => {
-        localStorage.setItem("token", resp.data.body.token);
-        // console.log("token", resp.data.body.token);
-
         dispatch({
           type: "SIGN_IN",
           token: resp.data.body.token,
         });
+
+        rememberMe
+          ? localStorage.setItem("token", resp.data.body.token)
+          : sessionStorage.setItem("token", resp.data.body.token);
       })
       .catch((error) => {
         console.log(error.response);
@@ -30,11 +31,10 @@ export const signOut = () => {
     dispatch({
       type: "CLEAR_USER",
     });
-    
+
     dispatch({
       type: "SIGN_OUT",
     });
-
   };
 };
 

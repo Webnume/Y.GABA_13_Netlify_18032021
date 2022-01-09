@@ -1,8 +1,11 @@
 import { toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
 
+const getToken =
+  sessionStorage.getItem("token") || localStorage.getItem("token");
+
 const initialState = {
-  token: localStorage.getItem("token"),
+  token: getToken,
   id: null,
 };
 
@@ -13,14 +16,15 @@ const authReducer = (state = initialState, action) => {
       toast("Welcome...", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
-      const user = jwtDecode(action.token); 
+      const user = jwtDecode(action.token);
       return {
         ...initialState,
         token: action.token,
-        id: user.id
+        id: user.id,
       };
     case "SIGN_OUT":
       localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       toast("Goodbye...", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });

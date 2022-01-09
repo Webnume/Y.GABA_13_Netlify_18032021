@@ -22,16 +22,16 @@ const Login = () => {
   const [creds, setCreds] = useState({
     email: "",
     password: "",
+    rememberMe: false,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signIn(creds.email, creds.password));
-    setCreds({ email: "", password: "" });
+    dispatch(signIn(creds.email, creds.password, creds.rememberMe));
+    setCreds({ email: "", password: "", rememberMe: creds.rememberMe });
   };
-// console.log(auth.id);
+  // console.log(creds.rememberMe);
   if (auth.id) return <Navigate to="/profile" />;
-
 
   return (
     <main className="main bg-dark">
@@ -64,9 +64,20 @@ const Login = () => {
             />
           </div>
 
+          <div className="input-remember">
+            <Input
+              type="checkbox"
+              id="remember-me"
+              onChange={() =>
+                setCreds({ ...creds, rememberMe: !creds.rememberMe })
+              }
+            />
+            <label htmlFor="remember-me">Remember me</label>
+          </div>
+
           <div className="form-group">
             <button className="sign-in-button">Login</button>
-          </div>          
+          </div>
         </Form>
       </section>
     </main>
