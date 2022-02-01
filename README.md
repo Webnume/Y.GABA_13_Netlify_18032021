@@ -2,14 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Description
 
-Compléter le code de leur site. Vous écrirez des appels à l'API REST pour connecter le front au back et vous modéliserez une API.
+Compléter le code de leur site. Ecrire des appels à l'API REST pour connecter le front au back et modéliser une API.
 
 - Implémenter un gestionnaire d'état dans une application React avec Redux
-- Intéragir avec une API
+- Interagir avec une API
 - Modéliser une API
 - S'authentifier à une API
+
 
 ## Back-end API
 
