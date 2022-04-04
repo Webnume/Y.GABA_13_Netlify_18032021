@@ -1,22 +1,22 @@
 .editInput {
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 3px solid #ccc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
-    color:#ccc;
-    border-radius: 5px;
-    margin: 1rem 1rem 0 1rem;
-  }
-  
-  .editInput:focus {
-    border: 3px solid #555;
-  }
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  color: #ccc;
+  border-radius: 5px;
+  margin: 1rem 1rem 0 1rem;
+}
 
-  button{
-      width: 100px;
-      border-radius: 5px;
-      margin: 0 1rem;
-      cursor: pointer;
-  }
+.editInput:focus {
+  border: 3px solid #555;
+}
+
+button {
+  width: 100px;
+  border-radius: 5px;
+  margin: 0 1rem;
+  cursor: pointer;
+}
